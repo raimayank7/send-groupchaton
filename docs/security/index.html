@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang='en' data-theme='light'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1, viewport-fit=cover'>
+<title>Is Send secure? Encryption, one-time codes and honest limits</title>
+<meta name='description' content='What protects your files on Send: compulsory end-to-end encryption, no storage, one-time codes, accept-first downloads, a safety code, and the limits to know.'>
+<link rel='canonical' href='https://send.groupchaton.com/security/'>
+<meta name='robots' content='index, follow, max-image-preview:large'>
+<meta property='og:type' content='website'><meta property='og:site_name' content='Send by GroupChatOn'>
+<meta property='og:title' content='Is Send secure? Encryption, one-time codes and honest limits'><meta property='og:description' content='What protects your files on Send: compulsory end-to-end encryption, no storage, one-time codes, accept-first downloads, a safety code, and the limits to know.'><meta property='og:url' content='https://send.groupchaton.com/security/'>
+<meta property='og:image' content='https://send.groupchaton.com/brand/favicon-512.png'><meta name='twitter:card' content='summary'>
+<meta name='twitter:title' content='Is Send secure? Encryption, one-time codes and honest limits'><meta name='twitter:description' content='What protects your files on Send: compulsory end-to-end encryption, no storage, one-time codes, accept-first downloads, a safety code, and the limits to know.'>
+<meta name='theme-color' content='#EA580C'>
+<link rel='icon' href='/brand/favicon.ico' sizes='any'><link rel='icon' type='image/png' sizes='32x32' href='/brand/favicon-32.png'>
+<link rel='apple-touch-icon' href='/brand/apple-touch-icon.png'><link rel='manifest' href='/manifest.webmanifest'>
+<style>body{margin:0;background:#fbf8f5;color:#1c1917}html[data-theme='dark'] body{background:#0f0d0c;color:#f5f0eb}.hdr{height:62px}.sd{min-height:340px}</style>
+<script src='/assets/theme.js?v=c96dea8f'></script>
+<link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&family=Red+Hat+Mono:wght@500;600&display=swap'>
+<link rel='stylesheet' href='/assets/send.css?v=1faa3d3b'>
+<script type='application/ld+json'>{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://send.groupchaton.com/#site", "name": "Send by GroupChatOn", "url": "https://send.groupchaton.com/", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "GroupChatOn", "url": "https://www.groupchaton.com/", "logo": "https://send.groupchaton.com/brand/favicon-512.png"}}, {"@type": "WebPage", "url": "https://send.groupchaton.com/security/", "name": "Is Send secure? Encryption, one-time codes and honest limits", "description": "What protects your files on Send: compulsory end-to-end encryption, no storage, one-time codes, accept-first downloads, a safety code, and the limits to know.", "isPartOf": {"@id": "https://send.groupchaton.com/#site"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://send.groupchaton.com/"}, {"@type": "ListItem", "position": 2, "name": "Security", "item": "https://send.groupchaton.com/security/"}]}]}</script>
+<script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5935207738848708' crossorigin='anonymous'></script>
+</head>
+<body data-ads='1'>
+<a class='skip' href='#main'>Skip to content</a>
+<header class='hdr'>
+  <div class='wrap hdr-in'>
+    <a class='brand' href='/' aria-label='Send by GroupChatOn: home'><img class='logo-l' src='/brand/logo-light.png' width='218' height='50' alt='GroupChatOn'><img class='logo-d' src='/brand/logo-dark.png' width='218' height='50' alt='GroupChatOn'><span class='brand-t'>Send</span></a>
+    <nav class='nav' id='nav' aria-label='Site'><a href='/how-it-works/'>How it works</a><a href='/security/' aria-current='page'>Security</a><a href='/faq/'>FAQ</a></nav>
+    <div class='hdr-act'>
+      <button class='ibtn' type='button' data-theme-toggle aria-label='Switch light or dark mode' title='Light / dark'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'/></svg></button>
+      <button class='ibtn' type='button' data-install hidden aria-label='Install Send as an app' title='Install app'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3v12M7 10l5 5 5-5M5 21h14'/></svg></button>
+      <button class='ibtn menu-btn' type='button' aria-controls='nav' aria-expanded='false' aria-label='Menu'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M4 7h16M4 12h16M4 17h16'/></svg></button>
+    </div>
+  </div>
+</header>
+<main id='main' class='wrap'>
+<nav class='crumbs' aria-label='Breadcrumb'><a href='/'>Home</a> <span aria-hidden='true'>›</span> <span aria-current='page'>Security</span></nav>
+
+<div class='content'>
+<h1>Security: how Send keeps your files private</h1>
+<p>Send was built so that the people running it can't see what you send, even if they wanted to. Here is exactly what protects you, and the limits you should know.</p>
+<h2>What protects you</h2>
+<table>
+<tr><th>Protection</th><th>What it means for you</th></tr>
+<tr><td>End-to-end encryption (WebRTC DTLS)</td><td>Files and notes are encrypted on your device and decrypted only on the other device. Browsers make this compulsory.</td></tr>
+<tr><td>No upload, no storage</td><td>There is no server that holds your file. Nothing can leak from a server that never had it.</td></tr>
+<tr><td>One-time codes</td><td>Codes are 8 random characters from a 32-character alphabet (over a trillion combinations), made by your browser's secure random generator. After pairing, both devices leave the pairing service and the code dies.</td></tr>
+<tr><td>Accept before anything arrives</td><td>The receiver sees the name, type and size of each file and must tap Accept. Nothing downloads or opens by itself.</td></tr>
+<tr><td>Safety code</td><td>Both screens show four pictures computed from the encryption keys of this connection. Same pictures on both = nobody in the middle.</td></tr>
+<tr><td>Risky-file warning</td><td>Programs and scripts (.exe, .msi, .apk, .bat, .ps1, .js, macro documents and more) get a clear warning before you accept.</td></tr>
+<tr><td>Locked-down page</td><td>The transfer page may only run its own code plus two pinned libraries (PeerJS and a QR-code drawer, each checked against a fixed fingerprint so a changed copy is refused). It shows no ads and loads no trackers.</td></tr>
+<tr><td>Code kept out of addresses sent to servers</td><td>Pairing links put the code after a # sign. Browsers never send that part to any website.</td></tr>
+</table>
+<h2>Honest limits</h2>
+<ul>
+<li><b>The other device sees your internet address.</b> Every direct connection works this way (video calls too). It shows roughly which city or network you are on, not who you are.</li>
+<li><b>Only accept files from people you know.</b> Encryption protects a file on its way; it can't make a harmful file safe. Never run a program someone unexpected sent you.</li>
+<li><b>The pairing service is a public one (PeerJS).</b> It sees that two devices connected, and their network addresses, for the moment it introduces them. It never sees files or notes, and the safety code lets you confirm it didn't place itself in the middle.</li>
+<li><b>A device that is already infected</b> (malware, a screen-recording app) can see whatever you see. Send can't protect a compromised device.</li>
+</ul>
+<h2>Good habits</h2>
+<ol><li>Read the code out loud or scan the QR code rather than posting it publicly.</li><li>For something sensitive, compare the safety code on both screens before sending.</li><li>Tap Disconnect when you are done.</li></ol>
+<p>Found a security problem? Please tell us through the <a href='/contact/'>contact page</a>.</p>
+</div>
+
+</main>
+<footer class='ftr'>
+  <div class='wrap ftr-in'>
+    <div class='ftr-brand'><img src='/brand/mark.svg' width='40' height='40' alt=''><div><b>Send by GroupChatOn</b><br><span>Send files and notes straight from one device to another. Encrypted, no upload, no sign-up.</span></div></div>
+    <nav class='ftr-nav' aria-label='About Send'><b>Send</b><a href='/how-it-works/'>How it works</a><a href='/security/'>Security</a><a href='/faq/'>FAQ</a><a href='/about/'>About</a><a href='/contact/'>Contact</a><a href='/privacy-policy/'>Privacy policy</a><a href='/terms-of-use/'>Terms of use</a><a href='/disclaimer/'>Disclaimer</a></nav>
+    <nav class='ftr-nav' aria-label='GroupChatOn'><b>GroupChatOn</b><a href='https://www.groupchaton.com/'>Novels ↗</a><a href='https://infinity.groupchaton.com/'>Infinity free tools ↗</a><a href='https://toolkit.groupchaton.com/'>Toolkit ↗</a><a href='https://share.groupchaton.com/'>Share ↗</a><a href='https://help.groupchaton.com/'>Help ↗</a></nav>
+  </div>
+  <div class='wrap ftr-base'>
+    <p>© 2026 GroupChatOn. All rights reserved.</p>
+    <p><span data-ns-credit>Designed &amp; Developed by: <a href='https://www.niveshsahayak.in/'>Nivesh Sahayak</a></span></p>
+  </div>
+</footer>
+<script defer src='/assets/site.js?v=947b4fdc'></script>
+<script async src='https://assets.niveshsahayak.in/assets/credit.js'></script>
+</body>
+</html>
