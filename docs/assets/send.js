@@ -30,7 +30,7 @@
 
   var $ = function (s, r) { return (r || app).querySelector(s); };
   var peer = null, conn = null, myCode = '', role = '', outQueue = [], sending = null, incoming = {}, current = null, wake = null;
-  var chunkSize = 16384, retries = 0;
+  var chunkSize = 16384, retries = 0, turn = 0;
 
   function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function size(n) { var u = ['B', 'KB', 'MB', 'GB', 'TB'], i = 0; while (n >= 1024 && i < 4) { n /= 1024; i++; } return (i ? n.toFixed(n < 10 ? 1 : 0) : n) + ' ' + u[i]; }
@@ -60,8 +60,8 @@
     drawQR(link);
     show('pair');
     status('Getting your code ready…');
-    var mine = myCode;
-    withIce(function () { if (mine === myCode && !peer) host(); });
+    var t = turn;
+    withIce(function () { if (t === turn) host(); });    // a later start/join cancels this one
   }
   function host() {
     peer = new Peer(PREFIX + myCode.toLowerCase(), opts());
@@ -80,7 +80,8 @@
     if (!window.Peer) { status('Could not load the connection library. Check your internet and reload the page.', 'bad'); return; }
     stop(); role = 'guest';
     status('Connecting to ' + pretty(code) + '…');
-    withIce(function () { if (role === 'guest' && !peer) guest(code); });
+    var t = turn;
+    withIce(function () { if (t === turn) guest(code); });
   }
   function guest(code) {
     peer = new Peer(undefined, opts());
@@ -136,7 +137,7 @@
     conn = null;
     if (!silent) ended('You disconnected.');
   }
-  function stop() { try { conn && conn.close(); } catch (e) {} try { peer && peer.destroy(); } catch (e) {} conn = null; peer = null; }
+  function stop() { turn++; try { conn && conn.close(); } catch (e) {} try { peer && peer.destroy(); } catch (e) {} conn = null; peer = null; }
   function ended(why) {
     Object.keys(incoming).forEach(function (id) { var f = incoming[id]; if (f.state !== 'done') mark(f, 'Stopped'); if (f.writer) f.writer.abort().catch(function () {}); });
     if (sending) mark(sending, 'Stopped');
