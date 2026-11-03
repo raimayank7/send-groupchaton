@@ -15,7 +15,7 @@ FONTS = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;8
 # the transfer page only runs its own files, the two libraries above and the credit; no ads there (they would run inside the page)
 CSP = ("default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com https://assets.niveshsahayak.in; "
        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; "
-       "img-src 'self' data: blob: https://assets.niveshsahayak.in; connect-src 'self' https://0.peerjs.com wss://0.peerjs.com; "
+       "img-src 'self' data: blob: https://assets.niveshsahayak.in; connect-src 'self' https://send-meet.send-meet.workers.dev wss://send-meet.send-meet.workers.dev; "
        "media-src 'self' blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'")
 
 esc = lambda s: html.escape(s, quote=True)
@@ -219,7 +219,7 @@ HOW = """
 <h1>How Send works</h1>
 <p>Send moves a file from one browser to another using <b>WebRTC</b>, the same technology video-call websites use to send your camera picture directly to the person you are talking to. Instead of video, Send sends the pieces of your file.</p>
 <h2>1. Two devices meet</h2>
-<p>When you open Send, your browser makes a random 8-character code and tells a small public pairing service (PeerJS) "a device with this code is waiting". When the other device enters the code, the pairing service passes a short introduction between them: which network addresses each one can be reached at, and the encryption key fingerprints. That is all it ever sees. It never sees file names, notes or files.</p>
+<p>When you open Send, your browser makes a random 8-character code and tells Send's own small pairing service (running on Cloudflare) "a device with this code is waiting". When the other device enters the code, the pairing service passes a short introduction between them: which network addresses each one can be reached at, and the encryption key fingerprints. That is all it ever sees. It never sees file names, notes or files.</p>
 <h2>2. A direct, encrypted line opens</h2>
 <p>With that introduction, the two browsers connect to each other directly, through home routers and mobile networks, using a technique called ICE. Every WebRTC connection is encrypted with DTLS, the same family of encryption as the padlock in your address bar. Browsers do not allow an unencrypted WebRTC connection, so this can't be switched off, by us or anyone else.</p>
 <p>As soon as the line is open, both devices disconnect from the pairing service. From then on the code is useless: nobody can use it to join.</p>
@@ -255,7 +255,7 @@ SEC = """
 <ul>
 <li><b>The other device sees your internet address.</b> Every direct connection works this way (video calls too). It shows roughly which city or network you are on, not who you are.</li>
 <li><b>Only accept files from people you know.</b> Encryption protects a file on its way; it can't make a harmful file safe. Never run a program someone unexpected sent you.</li>
-<li><b>The pairing service is a public one (PeerJS).</b> It sees that two devices connected, and their network addresses, for the moment it introduces them. It never sees files or notes, and the safety code lets you confirm it didn't place itself in the middle.</li>
+<li><b>The pairing service runs on Cloudflare's network.</b> It sees that two devices connected, and their network addresses, for the moment it introduces them. It keeps no record of them. It never sees files or notes, and the safety code lets you confirm it didn't place itself in the middle.</li>
 <li><b>A device that is already infected</b> (malware, a screen-recording app) can see whatever you see. Send can't protect a compromised device.</li>
 </ul>
 <h2>Good habits</h2>
@@ -307,7 +307,7 @@ PRIVACY = """
 <h2>Files and notes</h2>
 <p>Files and notes you send travel directly between the two devices over an encrypted WebRTC connection. They are never uploaded to, stored on or readable by our servers or the pairing service. We cannot see, recover or delete them, because we never have them.</p>
 <h2>The pairing service</h2>
-<p>To introduce two devices, Send uses the public PeerJS service (0.peerjs.com). During pairing it handles a random device identifier made from your code, and the network addresses your devices offer to connect on. It does not receive file names, files or notes. Its operators' own terms apply to that service.</p>
+<p>To introduce two devices, Send uses its own small pairing service, which runs on Cloudflare's network (send-meet.send-meet.workers.dev). During pairing it handles a random device identifier made from your code, and the network addresses your devices offer to connect on. It does not receive file names, files or notes. It keeps no record of them once the devices are introduced. Cloudflare's own privacy policy applies to its network.</p>
 <h2>What stays on your device</h2>
 <p>Send saves only your light/dark choice in your browser's local storage, and keeps the app's own files (not your transfers) in the browser cache so it opens quickly. You can clear both in your browser settings.</p>
 <h2>Fonts and libraries</h2>
@@ -333,7 +333,7 @@ TERMS = """
 <h2>No storage, no recovery</h2>
 <p>Send never stores files. If a transfer fails or a page is closed, the file can't be recovered from us; send it again.</p>
 <h2>Availability</h2>
-<p>Send depends on browsers, networks and a third-party pairing service. We don't guarantee it will always be available or that every pair of networks can connect.</p>
+<p>Send depends on browsers, networks and a pairing service hosted by Cloudflare. We don't guarantee it will always be available or that every pair of networks can connect.</p>
 <h2>Liability</h2>
 <p>To the extent the law allows, GroupChatOn is not liable for any loss or damage from using Send, including lost files, harmful files you choose to accept, or interrupted transfers.</p>
 <h2>Changes</h2>

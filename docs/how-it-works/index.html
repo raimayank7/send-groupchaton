@@ -42,7 +42,7 @@
 <h1>How Send works</h1>
 <p>Send moves a file from one browser to another using <b>WebRTC</b>, the same technology video-call websites use to send your camera picture directly to the person you are talking to. Instead of video, Send sends the pieces of your file.</p>
 <h2>1. Two devices meet</h2>
-<p>When you open Send, your browser makes a random 8-character code and tells a small public pairing service (PeerJS) "a device with this code is waiting". When the other device enters the code, the pairing service passes a short introduction between them: which network addresses each one can be reached at, and the encryption key fingerprints. That is all it ever sees. It never sees file names, notes or files.</p>
+<p>When you open Send, your browser makes a random 8-character code and tells Send's own small pairing service (running on Cloudflare) "a device with this code is waiting". When the other device enters the code, the pairing service passes a short introduction between them: which network addresses each one can be reached at, and the encryption key fingerprints. That is all it ever sees. It never sees file names, notes or files.</p>
 <h2>2. A direct, encrypted line opens</h2>
 <p>With that introduction, the two browsers connect to each other directly, through home routers and mobile networks, using a technique called ICE. Every WebRTC connection is encrypted with DTLS, the same family of encryption as the padlock in your address bar. Browsers do not allow an unencrypted WebRTC connection, so this can't be switched off, by us or anyone else.</p>
 <p>As soon as the line is open, both devices disconnect from the pairing service. From then on the code is useless: nobody can use it to join.</p>

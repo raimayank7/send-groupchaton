@@ -1,7 +1,8 @@
 /* Send by GroupChatOn: files go straight from one browser to another (WebRTC data channel, always encrypted).
-   The PeerJS server only introduces the two devices; no file or note ever passes through a server we run.
+   Our meeting point (a PeerJS-compatible Cloudflare Worker) only introduces the two devices; files and notes never pass
+   through it. On networks that block direct links, Cloudflare's relay may carry the already-encrypted data.
    Pairing: one device shows a one-time code; the other enters it (or opens the link / scans the QR).
-   After pairing both leave the PeerJS server, so the code can't be used again. Nothing is received until the user accepts it.
+   After pairing both leave the meeting point, so the code can't be used again. Nothing is received until the user accepts it.
    Designed & Developed by: Nivesh Sahayak. */
 (function () {
   'use strict';
@@ -10,7 +11,18 @@
 
   var ALPHA = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';   // no 0/1/I/O: easy to read out loud
   var PREFIX = 'gcosend-v1-';
-  var ICE = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }, { urls: 'stun:stun.cloudflare.com:3478' }] };
+  // our own meeting point (Cloudflare Worker, folder send-meet); /ice adds a relay pass when Cloudflare TURN is on
+  var MEET = { host: 'send-meet.send-meet.workers.dev', port: 443, path: '/', key: 'gcosend', secure: true, debug: 0 };
+  var ICE = { iceServers: [{ urls: 'stun:stun.cloudflare.com:3478' }, { urls: 'stun:stun.l.google.com:19302' }] }, iceAt = 0;
+  function opts() { var o = {}; for (var k in MEET) o[k] = MEET[k]; o.config = ICE; return o; }
+  function withIce(go) {                                  // fresh connection details at most once an hour; never wait more than 4 s
+    if (Date.now() - iceAt < 36e5) return go();
+    var done = false, finish = function () { if (!done) { done = true; go(); } };
+    setTimeout(finish, 4000);
+    fetch('https://' + MEET.host + '/ice', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (j) {
+      if (j && j.iceServers && j.iceServers.length) { ICE = { iceServers: j.iceServers }; iceAt = Date.now(); }
+    }).catch(function () {}).then(finish);
+  }
   var RISKY = /\.(exe|msi|bat|cmd|com|scr|pif|vbs|vbe|js|jse|wsf|wsh|ps1|psm1|reg|lnk|hta|cpl|jar|apk|xapk|dmg|pkg|app|sh|run|bin|iso|img|docm|xlsm|pptm)$/i;
   var EMOJI = ['🍎','🍌','🍇','🍉','🍒','🍋','🥕','🌽','🍄','🌵','🌻','🌲','🍀','🌙','⭐','☀️','⚡','🔥','💧','❄️','🌈','☂️','🎈','🎁',
                '🎵','🎲','🧩','🪁','⚽','🏀','🎯','🚲','🚗','🚀','⛵','✈️','🏠','⏰','📚','✏️','🔑','🔔','💡','🧭','🧲','🧸','🐶','🐱',
@@ -48,7 +60,11 @@
     drawQR(link);
     show('pair');
     status('Getting your code ready…');
-    peer = new Peer(PREFIX + myCode.toLowerCase(), { config: ICE, debug: 0 });
+    var mine = myCode;
+    withIce(function () { if (mine === myCode && !peer) host(); });
+  }
+  function host() {
+    peer = new Peer(PREFIX + myCode.toLowerCase(), opts());
     peer.on('open', function () { retries = 0; status('Waiting for the other device. Your code works once.', 'wait'); });
     peer.on('connection', function (c) {
       if (conn) { c.on('open', function () { c.close(); }); return; }       // one partner per code
@@ -64,7 +80,10 @@
     if (!window.Peer) { status('Could not load the connection library. Check your internet and reload the page.', 'bad'); return; }
     stop(); role = 'guest';
     status('Connecting to ' + pretty(code) + '…');
-    peer = new Peer(undefined, { config: ICE, debug: 0 });
+    withIce(function () { if (role === 'guest' && !peer) guest(code); });
+  }
+  function guest(code) {
+    peer = new Peer(undefined, opts());
     peer.on('open', function () { attach(peer.connect(PREFIX + code.toLowerCase(), { reliable: true, serialization: 'raw' })); });
     peer.on('error', onPeerError);
   }
