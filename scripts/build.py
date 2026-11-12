@@ -98,7 +98,7 @@ def page(path, title, desc, main, ld=None, crumbs=None, ads=False, tool=False, n
   <div class='wrap ftr-in'>
     <div class='ftr-brand'><img src='/brand/mark.svg' width='40' height='40' alt=''><div><b>{NAME}</b><br><span>Send files and notes straight from one device to another. Encrypted, no upload, no sign-up.</span></div></div>
     <nav class='ftr-nav' aria-label='About Send'><b>Send</b><a href='/how-it-works/'>How it works</a><a href='/security/'>Security</a><a href='/faq/'>FAQ</a><a href='/about/'>About</a><a href='/contact/'>Contact</a><a href='/privacy-policy/'>Privacy policy</a><a href='/terms-of-use/'>Terms of use</a><a href='/disclaimer/'>Disclaimer</a></nav>
-    <nav class='ftr-nav' aria-label='GroupChatOn'><b>GroupChatOn</b><a href='https://www.groupchaton.com/'>Novels ↗</a><a href='https://infinity.groupchaton.com/'>Infinity free tools ↗</a><a href='https://toolkit.groupchaton.com/'>Toolkit ↗</a><a href='https://share.groupchaton.com/'>Share ↗</a><a href='https://help.groupchaton.com/'>Help ↗</a></nav>
+    <nav class='ftr-nav' aria-label='GroupChatOn'><b>GroupChatOn</b><a href='https://novel.groupchaton.com/'>Novels ↗</a><a href='https://infinity.groupchaton.com/'>Infinity free tools ↗</a><a href='https://toolkit.groupchaton.com/'>Toolkit ↗</a><a href='https://share.groupchaton.com/'>Share ↗</a><a href='https://help.groupchaton.com/'>Help ↗</a></nav>
   </div>
   <div class='wrap ftr-base'>
     <p>© {YEAR} GroupChatOn. All rights reserved.</p>
@@ -286,7 +286,7 @@ ABOUT = """
 <h2>Our promises</h2>
 <ul><li>Free to use, with no account.</li><li>Your files are never uploaded or stored.</li><li>No ads or trackers on the transfer screen.</li><li>Plain explanations of how it works and what its limits are.</li></ul>
 <h2>Part of GroupChatOn</h2>
-<p>Send sits next to <a href='https://infinity.groupchaton.com/'>Infinity</a> (600+ free browser tools), the <a href='https://toolkit.groupchaton.com/'>Toolkit</a> (office templates), <a href='https://share.groupchaton.com/'>Share</a> (group listings) and <a href='https://www.groupchaton.com/'>GroupChatOn novels</a>.</p>
+<p>Send sits next to <a href='https://infinity.groupchaton.com/'>Infinity</a> (600+ free browser tools), the <a href='https://toolkit.groupchaton.com/'>Toolkit</a> (office templates), <a href='https://share.groupchaton.com/'>Share</a> (group listings) and <a href='https://novel.groupchaton.com/'>GroupChatOn novels</a>.</p>
 </div>
 """
 
