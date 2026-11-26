@@ -142,3 +142,60 @@ th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);verti
 .ftr-base p{margin:0 0 4px}.ftr-base a{color:var(--ink-soft)}
 .ftr-soc{display:flex;flex-wrap:wrap;gap:0 16px;align-items:center;margin:8px 0 0}.ftr-soc a{display:inline-flex;align-items:center;min-height:44px}
 .ftr-soc{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.ftr-soc b{margin-right:4px}.ftr-soc a.si{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;border:1px solid rgba(128,128,128,.45);color:inherit;text-decoration:none;background:transparent;transition:background .15s,color .15s,border-color .15s,transform .15s}.ftr-soc a.si svg{width:20px;height:20px;fill:currentColor}.ftr-soc a.si:hover,.ftr-soc a.si:focus-visible{color:#fff;border-color:transparent;transform:translateY(-2px)}.ftr-soc a.si.fb:hover,.ftr-soc a.si.fb:focus-visible{background:#1877f2}.ftr-soc a.si.x:hover,.ftr-soc a.si.x:focus-visible{background:#111}.ftr-soc a.si.yt:hover,.ftr-soc a.si.yt:focus-visible{background:#f00}.ftr-soc{margin:10px 0 0}
+
+/* ===== Phones (up to 600 px), 26 Nov 2026: one-hand flow. Pair: code + Connect large; Live: transfers on top, the
+   "choose files" and note composer pinned at thumb height like a chat app. Desktop unchanged. ===== */
+@media (max-width:600px){
+  .hdr-in{height:58px}.nav{top:58px}
+  .ibtn{width:44px;height:44px}
+  .brand{min-height:44px}.skip{min-height:44px;display:inline-flex;align-items:center}
+  .content p>a:only-child{display:inline-block;padding:12px 0}
+  .nav a{min-height:44px;display:flex;align-items:center}
+  .nav:not(.is-open){display:none}
+  .hero{padding:16px 0 6px}
+  .hero h1{font-size:clamp(24px,7.2vw,30px);margin-bottom:.35em}
+  .hero p.lead{font-size:15.5px;margin-bottom:12px}
+  .pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin:0 -16px 14px;padding:0 16px}
+  .pills::-webkit-scrollbar{display:none}.pills li{flex:none;font-size:13px}
+  .sd{padding:14px;margin:0 -6px;border-radius:16px;min-height:300px}
+  .sd:not(.is-ready)::before{inset:14px}
+  .sd-grid{gap:12px}
+  .sd-box{padding:14px}
+  /* "Have a code?" first: on a phone you usually type the other screen's code */
+  .sd[data-view='pair'] .sd-grid{display:flex;flex-direction:column}
+  .sd-join{order:-1}
+  .sd-join input{font-size:24px;min-height:56px;text-align:center}
+  .sd-join .sd-btn{min-height:52px;font-size:17px}
+  .sd-code{text-align:center;margin:2px 0 10px}
+  .sd-qr-row{flex-direction:column;align-items:stretch;gap:12px}
+  .sd-qr{width:168px;height:168px;align-self:center}
+  .sd-links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .sd-links>label,.sd-links>input{grid-column:1/-1}
+  .sd-links input{min-height:44px;font-size:14px}
+  .sd-links .sd-btn[hidden]{display:none}
+  .sd-links [data-share-link]:not([hidden])~.sd-btn.is-quiet{grid-column:1/-1}
+  /* connected: list first, composer pinned at the bottom of the screen */
+  .sd[data-view='live'] .v-live{display:flex;flex-direction:column}
+  .sd-head{order:0;gap:8px;margin-bottom:10px}
+  .sd-head .sd-peer{flex:1 1 0;min-width:0}
+  .sd-safety{order:2;flex:1 1 100%;min-width:0;padding:6px 12px;gap:10px}.sd-safety b{white-space:nowrap;font-size:20px;letter-spacing:.04em}.sd-safety span{max-width:none;font-size:12px}
+  .sd-head [data-hangup]{order:1;flex:none}
+  .sd-empty{order:1;margin:6px 0 10px}
+  .sd-list{order:2;margin:0 0 12px}
+  .sd-drop{order:3;position:sticky;bottom:calc(66px + env(safe-area-inset-bottom));z-index:5;box-shadow:0 12px 0 0 var(--surface),0 -10px 18px -12px rgba(0,0,0,.35);display:flex;align-items:center;gap:10px;text-align:left;
+    padding:12px 14px;margin:0 -2px;background:var(--surface);border-style:solid;border-color:var(--accent);min-height:56px}
+  .sd-drop svg{width:28px;height:28px;flex:none}
+  .sd-drop b{font-size:16px;margin:0}
+  .sd-drop span{display:none}
+  .sd-note-form{order:4;position:sticky;bottom:0;z-index:5;margin:8px -14px -14px;padding:8px 14px calc(10px + env(safe-area-inset-bottom));
+    background:var(--surface);border-top:1px solid var(--line);border-radius:0 0 16px 16px}
+  .sd-note-form textarea{min-height:48px;font-size:16px}
+  .sd-note-form .sd-btn{min-height:48px;flex:none}
+  .sd-acts{width:100%}.sd-acts .sd-btn{flex:1 1 auto;min-height:44px}
+  .v-ended .sd-btn{min-height:52px;width:100%}
+  .faq summary{min-height:44px;display:flex;align-items:center;padding:8px 0}
+  .crumbs a{display:inline-block;padding:12px 4px;margin:-12px -4px}
+  .ftr-nav{gap:0}.ftr-nav a{min-height:44px;display:flex;align-items:center}
+  .ftr-base a{display:inline-flex;align-items:center;min-height:44px}
+  .google-auto-placed{max-width:100%;overflow:hidden}.google-auto-placed>ins.adsbygoogle{width:100%!important}
+}
